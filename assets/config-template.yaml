@@ -1,0 +1,71 @@
+# Cloud Migration Sentinel - Configuration Template
+# Copy this file and customize for your environment
+
+migration:
+  # Preferred target provider when auto-selecting
+  defaultTarget: gcloud
+
+  # Provider priority order for fallback selection
+  priority:
+    - gcloud
+    - oracle
+    - azure
+    - aws
+
+  # Maximum retries for migration operations
+  maxRetries: 3
+
+  # Timeout for individual operations (milliseconds)
+  operationTimeout: 30000
+
+detection:
+  # How often to check provider status (seconds)
+  pollInterval: 300
+
+  # HTTP codes that indicate account suspension
+  suspensionCodes:
+    - 403
+    - 429
+
+  # Enable automatic migration on suspension detection
+  autoMigrate: false
+
+providers:
+  aws:
+    enabled: true
+    region: us-east-1
+    credentialsPath: ~/.aws/credentials
+
+  gcloud:
+    enabled: true
+    project: my-project
+    credentialsPath: ~/.config/gcloud/application_default_credentials.json
+
+  azure:
+    enabled: true
+    subscriptionId: ""
+    tenantId: ""
+    credentialsPath: ~/.azure/credentials
+
+  oracle:
+    enabled: false
+    tenancyId: ""
+    region: us-ashburn-1
+    credentialsPath: ~/.oci/config
+
+logging:
+  # Log level: debug, info, warn, error
+  level: info
+
+  # Output format: json, text
+  format: json
+
+  # Log file path (empty for stdout only)
+  filePath: ""
+
+rollback:
+  # Automatically rollback on validation failure
+  autoRollback: true
+
+  # Keep rollback data for this many days
+  retentionDays: 30

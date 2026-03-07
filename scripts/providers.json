@@ -1,0 +1,78 @@
+{
+  "providers": {
+    "aws": {
+      "name": "Amazon Web Services",
+      "api": "https://sts.amazonaws.com",
+      "statusEndpoint": "/account-status",
+      "freeTier": {
+        "compute": "t2.micro",
+        "storage": "5GB-s3",
+        "duration": "12-months"
+      },
+      "suspensionIndicators": {
+        "httpCodes": [403, 429],
+        "errorMessages": ["AccountSuspended", "AccessDenied", "ThrottlingException"]
+      },
+      "migrationApi": {
+        "export": "/workloads/export",
+        "import": "/workloads/import"
+      }
+    },
+    "gcloud": {
+      "name": "Google Cloud Platform",
+      "api": "https://cloudresourcemanager.googleapis.com/v1",
+      "statusEndpoint": "/projects/{projectId}",
+      "freeTier": {
+        "compute": "e2-micro",
+        "storage": "5GB-cloud-storage",
+        "duration": "always-free"
+      },
+      "suspensionIndicators": {
+        "httpCodes": [403, 429],
+        "errorMessages": ["PERMISSION_DENIED", "BILLING_DISABLED", "RESOURCE_EXHAUSTED"]
+      },
+      "migrationApi": {
+        "export": "/transfer/export",
+        "import": "/transfer/import"
+      }
+    },
+    "azure": {
+      "name": "Microsoft Azure",
+      "api": "https://management.azure.com",
+      "statusEndpoint": "/subscriptions/{subscriptionId}",
+      "freeTier": {
+        "compute": "B1s",
+        "storage": "5GB-blob",
+        "duration": "12-months"
+      },
+      "suspensionIndicators": {
+        "httpCodes": [403, 429],
+        "errorMessages": ["SubscriptionNotFound", "AuthorizationFailed", "TooManyRequests"]
+      },
+      "migrationApi": {
+        "export": "/resources/export",
+        "import": "/resources/import"
+      }
+    },
+    "oracle": {
+      "name": "Oracle Cloud",
+      "api": "https://identity.us-ashburn-1.oraclecloud.com",
+      "statusEndpoint": "/tenancy",
+      "freeTier": {
+        "compute": "VM.Standard.A1.Flex",
+        "storage": "10GB-object-storage",
+        "duration": "always-free"
+      },
+      "suspensionIndicators": {
+        "httpCodes": [401, 403, 429],
+        "errorMessages": ["NotAuthenticated", "NotAuthorized", "TooManyRequests"]
+      },
+      "migrationApi": {
+        "export": "/instances/export",
+        "import": "/instances/import"
+      }
+    }
+  },
+  "defaultTarget": "gcloud",
+  "migrationPriority": ["gcloud", "oracle", "azure", "aws"]
+}

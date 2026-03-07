@@ -1,0 +1,35 @@
+{
+  "categories": {
+    "authentication": {
+      "AUTH_001": "Credentials are missing or empty",
+      "AUTH_002": "Credentials have expired and need renewal",
+      "AUTH_003": "Insufficient permissions for the requested operation",
+      "AUTH_004": "Service account or API key has been revoked"
+    },
+    "suspension": {
+      "SUSP_001": "Account suspended due to billing issues",
+      "SUSP_002": "Account suspended due to policy violation",
+      "SUSP_003": "Account restricted due to unusual activity",
+      "SUSP_004": "Free tier quota exhausted"
+    },
+    "migration": {
+      "MIG_001": "Failed to export workload artifacts",
+      "MIG_002": "Failed to import workload to target provider",
+      "MIG_003": "Target provider does not support required features",
+      "MIG_004": "Workload size exceeds target provider free-tier limits",
+      "MIG_005": "Migration interrupted due to network error"
+    },
+    "validation": {
+      "VAL_001": "Health check failed after migration",
+      "VAL_002": "Artifact integrity check failed (checksum mismatch)",
+      "VAL_003": "Configuration validation failed on target",
+      "VAL_004": "State data inconsistency detected"
+    },
+    "rollback": {
+      "RBK_001": "Rollback data not available",
+      "RBK_002": "Original provider still suspended - cannot rollback",
+      "RBK_003": "Rollback artifacts corrupted or missing",
+      "RBK_004": "Rollback already completed for this migration"
+    }
+  }
+}

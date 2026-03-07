@@ -1,0 +1,67 @@
+{
+  "httpErrors": {
+    "401": {
+      "code": "AuthenticationFailed",
+      "message": "Authentication credentials are invalid or expired",
+      "action": "refresh_credentials",
+      "retryable": true
+    },
+    "403": {
+      "code": "ProviderAccessDenied",
+      "message": "Account access denied - possible suspension or restriction",
+      "action": "trigger_migration",
+      "retryable": false
+    },
+    "404": {
+      "code": "ResourceNotFound",
+      "message": "The requested resource does not exist",
+      "action": "verify_configuration",
+      "retryable": false
+    },
+    "429": {
+      "code": "RateLimitExceeded",
+      "message": "API rate limit exceeded - throttling in effect",
+      "action": "exponential_backoff",
+      "retryable": true
+    },
+    "500": {
+      "code": "ProviderInternalError",
+      "message": "Cloud provider internal server error",
+      "action": "retry_with_backoff",
+      "retryable": true
+    },
+    "503": {
+      "code": "ServiceUnavailable",
+      "message": "Cloud provider service is temporarily unavailable",
+      "action": "retry_with_backoff",
+      "retryable": true
+    }
+  },
+  "migrationErrors": {
+    "EXPORT_FAILED": {
+      "message": "Failed to export workload from source provider",
+      "action": "rollback",
+      "retryable": true
+    },
+    "IMPORT_FAILED": {
+      "message": "Failed to import workload to target provider",
+      "action": "rollback",
+      "retryable": true
+    },
+    "VALIDATION_FAILED": {
+      "message": "Post-migration validation checks failed",
+      "action": "rollback",
+      "retryable": true
+    },
+    "CREDENTIAL_ERROR": {
+      "message": "Target provider credentials are missing or invalid",
+      "action": "prompt_credentials",
+      "retryable": false
+    },
+    "CAPACITY_EXCEEDED": {
+      "message": "Target provider free-tier capacity exceeded",
+      "action": "try_next_provider",
+      "retryable": true
+    }
+  }
+}
