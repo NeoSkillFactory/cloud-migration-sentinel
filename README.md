@@ -48,8 +48,6 @@ node scripts/rollback.js --migration-id abc123
 
 Source code: [github.com/NeoSkillFactory/cloud-migration-sentinel](https://github.com/NeoSkillFactory/cloud-migration-sentinel)
 
-**Price suggestion:** $79 USD
-
 ## License
 
 MIT © NeoSkillFactory
